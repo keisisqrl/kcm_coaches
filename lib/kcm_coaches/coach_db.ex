@@ -68,5 +68,11 @@ defmodule KcmCoaches.CoachDb do
   defp type_matches(coach_type, num) do
     num >= coach_type.start && num <= coach_type.end
   end
+
+  @spec coach_models() :: [atom]
+  def coach_models do
+    Enum.map(type_list(),&Map.get(&1,:type))
+    |> Enum.uniq
+  end
   
 end
